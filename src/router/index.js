@@ -1,25 +1,36 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
+import { createRouter, createWebHistory } from 'vue-router'
+
+// Import the two pages for our Higher or Lower game
+import LoginPage from '../views/LoginPage.vue'
+import GamePage from '../views/GamePage.vue'
+
+// Define the routes available in our application
 const routes = [
   {
+    // Redirect visitors to the login page
     path: '/',
-    name: 'home',
-    component: HomeView
+    redirect: '/login'
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    // Display the login page
+    path: '/login',
+    name: 'login',
+    component: LoginPage
+  },
+  {
+    // Display the Higher or Lower game
+    path: '/game',
+    name: 'game',
+    component: GamePage
   }
 ]
 
+// Create the Vue Router using history mode
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
 
+// Export the router so main.js can use it
 export default router
